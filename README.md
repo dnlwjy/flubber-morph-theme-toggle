@@ -1,10 +1,10 @@
 # Flubber Morph Theme Toggle
 
-A Next.js app showcasing a dark/light mode toggle component that morphs between a crescent moon and sun icon using SVG path interpolation.
+A Next.js app showcasing a dark/light mode toggle component that morphs between a moon and sun icon using SVG path interpolation.
 
 ## How It Works
 
-The toggle uses [Flubber](https://github.com/veltman/flubber) to interpolate between two SVG paths (moon → circle → sun) and [Framer Motion](https://www.framer.com/motion/) to animate the transition.
+The toggle uses [Flubber](https://github.com/veltman/flubber) to interpolate between two SVG paths (moon x sun) and [Framer Motion](https://www.framer.com/motion/) to animate the transition.
 
 ### Theme Persistence (No Flash on Reload)
 
@@ -35,4 +35,3 @@ Open [http://localhost:3000](http://localhost:3000) to see the interactive playg
 |---|---|
 | `npm run dev` | Start development server |
 | `npm run build` | Build for production |
-| `npm run lint` | Run ESLint |

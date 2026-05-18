@@ -103,7 +103,7 @@ const ToggleTheme = ({
                 viewBox="0 0 38 38"
                 fill="none"
             >
-                {/* Morphing path: crescent moon → full circle */}
+                {/* Morphing path: moon → full circle */}
                 <m.path
                     d={pathD}
                     fill={filled ? "var(--gray)" : "none"}

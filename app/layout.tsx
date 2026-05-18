@@ -6,7 +6,7 @@ import ThemeProvider from "@/context/ThemeProvider"
 
 export const metadata: Metadata = {
   title: "Flubber Morph Theme Toggle | by Daniel Wijaya",
-  description: "A React theme toggle component that morphs between a crescent moon and sun using Flubber path interpolation and Framer Motion animation.",
+  description: "A React theme toggle component that morphs between a moon and sun using Flubber path interpolation and Framer Motion animation.",
   icons: {
     icon: '/favicon.png',
   },
