@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LazyMotion, domAnimation } from "framer-motion"
-import { cookies } from "next/headers"
 import ThemeProvider from "@/context/ThemeProvider"
 
 export const metadata: Metadata = {
@@ -12,19 +11,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies()
-  const cookieTheme = cookieStore.get("theme")?.value
-  const initialTheme: "dark" | "light" = cookieTheme === "light" ? "light" : "dark"
-
   return (
-    <html lang="en" className={initialTheme === "dark" ? "dark" : ""}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Reads cookie before React hydrates to prevent theme flash */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var m=document.cookie.match(/(?:^|; )theme=([^;]*)/);document.documentElement.classList.add(m&&m[1]==='light'?'light':'dark');})();` }} />
+      </head>
       <body>
-        <ThemeProvider initialTheme={initialTheme}>
+        <ThemeProvider initialTheme="dark">
           <LazyMotion features={domAnimation} strict>
               {children}
           </LazyMotion>
