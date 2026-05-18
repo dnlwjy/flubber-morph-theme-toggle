@@ -4,7 +4,13 @@ A Next.js app showcasing a dark/light mode toggle component that morphs between 
 
 ## How It Works
 
-The toggle uses [Flubber](https://github.com/veltman/flubber) to interpolate between two SVG paths (moon → circle → sun) and [Framer Motion](https://www.framer.com/motion/) to animate the transition. Theme state is persisted via cookies and resolved server-side to prevent flash on initial load.
+The toggle uses [Flubber](https://github.com/veltman/flubber) to interpolate between two SVG paths (moon → circle → sun) and [Framer Motion](https://www.framer.com/motion/) to animate the transition.
+
+### Theme Persistence (No Flash on Reload)
+
+The selected theme is saved as a **cookie in the user's browser** (not on any server). On every page load, the browser automatically sends that cookie along with the request. Next.js reads it **server-side** before rendering, so the correct `dark` or `light` class is already applied to `<html>` in the very first HTML the browser receives.
+
+This avoids the common "flash of wrong theme" problem that happens with `localStorage`-based approaches, where JavaScript must run client-side before the theme can be applied — causing a brief flicker on load.
 
 ## Tech Stack
 

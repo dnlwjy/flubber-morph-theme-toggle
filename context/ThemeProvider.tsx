@@ -20,15 +20,6 @@ export default function ThemeProvider({
 }) {
   const [theme, setThemeState] = useState<Theme>(initialTheme)
 
-  // On mount, read stored cookie and sync state (handles static export where server always defaults to "dark")
-  useEffect(() => {
-    const m = document.cookie.match(/(?:^|; )theme=([^;]*)/)
-    const stored: Theme = m && m[1] === "light" ? "light" : "dark"
-    setThemeState(stored)
-    document.documentElement.classList.remove("dark", "light")
-    document.documentElement.classList.add(stored)
-  }, [])
-
   const setTheme = (next: Theme) => {
     setThemeState(next)
     // Remove both classes first, then add the correct one
@@ -36,6 +27,11 @@ export default function ThemeProvider({
     document.documentElement.classList.add(next)
     document.cookie = `theme=${next}; path=/; max-age=31536000`
   }
+
+  useEffect(() => {
+    document.documentElement.classList.remove("dark", "light")
+    document.documentElement.classList.add(theme)
+  }, [theme])
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
