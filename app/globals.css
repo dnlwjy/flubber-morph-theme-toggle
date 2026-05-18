@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-sm: 680px;
+  --breakpoint-md: 1080px;
+  --breakpoint-lg: 1920px;
+}
+
+/* fonts declaration  */
+@font-face{
+  font-family: "playfair";
+  src: url("/fonts/PlayfairDisplay-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "inter";
+  src: url("/fonts/Inter_18pt-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* colors */
+:root {
+  --black: #121212;
+  --divider: #444444;
+  --gray: #8E8E8E;
+  --bodytext: #8F8F8F;
+  --white: #FFFFFF;
+}
+
+.light {
+  --black: #EEEEEE;
+  --divider: #CCCCCC;
+  --gray: #8E8E8E;
+  --bodytext: #7E7E7E;
+  --white: #000000;
+}
+
+/* semantic styling */
+@layer base {
+::selection {
+    background-color: var(--white);
+    color: var(--black);
+  }
+  ::-moz-selection {
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+html {
+  @apply h-full antialiased;
+}
+body {
+  font-family: "inter", sans-serif;
+  @apply bg-(--black) lg:text-[20px] text-[18px] text-(--bodytext) leading-[160%] text-start;
+}
+main {
+  @apply flex flex-col gap-0 items-center w-full overflow-clip;
+}
+section {
+  @apply flex px-5 py-16 sm:px-12 sm:py-32 md:p-32 gap-8 items-center justify-center w-full;
+}
+section.sm {
+  @apply flex-col pt-50 gap-24 max-w-400;
+}
+
+h1, h2, h3 {
+  font-family: "playfair", serif;
+  @apply text-center text-(--white) leading-[1.1];
+}
+h1 { @apply lg:text-[96px] sm:text-[72px] text-[48px]; }
+h2 { @apply lg:text-[40px] sm:text-[32px] text-[28px]; }
+h3 { @apply sm:text-[28px] text-[24px]; }
+
+a { @apply text-(--white) hover:text-(--gray) transition-colors duration-300; }
+
+input, textarea {
+  @apply w-full bg-transparent border-b border-(--divider) p-3 text-(--white) placeholder:text-(--divider) focus:outline-none bg-[linear-gradient(var(--white)_0_0)] bg-no-repeat bg-clip-border bg-size-[0%_1px] bg-bottom-right focus:bg-bottom-left focus:bg-size-[100%_1px];
+  transition: background-size 0.6s ease, background-position 0s;
+}
+
+}
+
+/* utility styling */
+@utility btn-text { @apply uppercase lg:text-[16px] text-[14px] leading-[120%] tracking-[0.35em] text-(--white); }
+@utility tag { @apply uppercase sm:text-[12px] text-[11px] leading-[150%] text-start tracking-[0.15em] text-(--bodytext); }
